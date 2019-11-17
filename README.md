@@ -6,6 +6,8 @@
 ***
 1. Скачиваем с github.com opencv-4-1-1 и opencv-contrib-4-1-1 (последние стабильные на момент сборки)
 
+        Branch: master -> Tags -> 4.1.1
+
 2. Распаковываем в удобные папки. У меня это были 
 
         C:\Program Files\opencv-4-1-1 и 
@@ -13,40 +15,44 @@
 
 3. Скачиваем последний cmake (3.16.0)
 
-    	Кнопка Configure -> проект под MSVS 2019, конфигурация х64, native compiler
+       Нам понадобится cmake-gui.exe
+       Кнопка Configure -> проект под MSVS 2019, конфигурация х64, native compiler
 	
 4. После чего начинается чтение файлов CMake
 
 5. Меняем следующие параметы:
 
-    5.1 `OPENCV_EXTRA_MODULES_PATH = "C:/Program Files/opencv-contrib-4-1-1/modules"`
-    - backslahs заменяем на foreslash
+    0. `OPENCV_EXTRA_MODULES_PATH = "C:/Program Files/opencv-contrib-4-1-1/modules"`
+        - backslahs заменяем на foreslash
             
-	5.2 `ENABLE_PRECOMPILED_HEADERS = flase`
+	0. `ENABLE_PRECOMPILED_HEADERS = flase`
 	
-	5.3 `WITH_PROTOBUF = false`
+	0. `WITH_PROTOBUF = false`
 	
-	5.4 `OPENCV_ENABLE_NONFREE = true`
+	0. `OPENCV_ENABLE_NONFREE = true`
 	
-	В системе должен быть установлен python 2 и python 3
+	0. `WITH_GSTREAMER = false`
 	
-	5.5 `PYTHON@_EXECUTABLE = "C:/Program Files/Python27/python.exe"`
+	        В системе должен быть установлен python 2 и python 3
 	
-	5.6 `CMAKE_CONFIGURATION_TYPES = Release; Debug`
-	- нужно собирать обе версии, по умолчанию включено
+	0. `PYTHON2_EXECUTABLE = "C:/Program Files/Python27/python.exe"`
 	
-	5.7 Дополнительно можно сразу подключить библиотеку Eigen
+	0. `CMAKE_CONFIGURATION_TYPES = Release; Debug`
+	    
+	    - нужно собирать обе версии, по умолчанию включено
+	
+	0. Дополнительно можно сразу подключить библиотеку Eigen
 	
 6. Снова жмём configure
 7. Если ошибок нет, жмём Generate. Если есть - гуглим и фиксим
-8. Запускаем Visual Studio от администратора. Заходим в папку C:\Program Files\opencv-4-1-1\build,
+8. Запускаем Visual Studio **от администратора**. Заходим в папку C:\Program Files\opencv-4-1-1\build,
 там открываем файл OpenCV.sln
 
 9. Нажимаем собрать решение) Ждём минут 30-40.
 10. Как итог будет: собрано 149, ошибок 0, пропущено 9
 11. Правый клик по решению - Свойства - Свойства конфигурации - отключаем BUILD_ALL и включаем INSTALL
 12. Снова собираем и, о чудо, появилась папка с именем install в build
-
+13. Повторяем тоже самое для другой конфигурации.
 
 ##### Глава 2. Установка
 ***
@@ -119,3 +125,10 @@
 4. Для конфигурации Release делаем тоже самое, только с другими lib'ами
  
         ... Компоновщик - Ввод - Дополнительные зависимости - *.lib
+
+##### Глава 3. Использование
+***
+   
+1. В Windows 10 для доступа приложений к камере необходимо изменить параметры конфиденциальности.
+    
+        Все параметры - Конфиденциальность - Доступ к камере - Разрешить приложениям доступ к камере 
