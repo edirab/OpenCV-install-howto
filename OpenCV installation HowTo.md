@@ -1,20 +1,28 @@
 ### Инструкция по сборке OpenCV 4.1.1 под Windows
 
+##### Глава 0. Если ничего не получилось с первого раза
+
+    В CMake: File - Delete Cache
+    И далее Configure
+
 ##### Глава 1. Сборка
 ***
-1. Скачиваем с github.com opencv-4-1-1 и opencv-contrib-4-1-1 (последние стабильные на момент сборки)
+1. Скачиваем с github.com opencv-4-1-1 и opencv-contrib-4-1-1 (последние стабильные на момент сборки).
+    Переключаем ветку для обоих (!)
 
         Branch: master -> Tags -> 4.1.1
 
 2. Распаковываем в удобные папки. У меня это были 
 
-        C:\Program Files\opencv-4-1-1 и 
-        C:\Program Files\opencv-contrib-4-1-1
+    >    C:\Program Files\opencv-4-1-1 и
+    > 
+    >    C:\Program Files\opencv-contrib-4-1-1
 
 3. Скачиваем последний cmake (3.16.0)
 
-       Нам понадобится cmake-gui.exe
-       Кнопка Configure -> проект под MSVS 2019, конфигурация х64, native compiler
+   > Нам понадобится cmake-gui.exe
+   >
+   > Кнопка Configure -> проект под MSVS 2019, конфигурация х64, native compiler
 	
 4. После чего начинается чтение файлов CMake
 
@@ -31,15 +39,34 @@
 	
 	0. `WITH_GSTREAMER = false`
 	
-	        В системе должен быть установлен python 2 и python 3
+	0. `BUILD_EXAMPLES = true`
+	
+	0. `INSTALL_C_EXAMPLES = true`
+	
+	0. `OPENCV_PYTHON3_VERSION = true`
+	
+        > В системе должен быть установлен python 2 и python 3
+        Прописать пути к 
+        - PYTHON3_EXECUTABLE, 
+        - PYTHON3_INCLUDE_DIR,
+        - PYTHON3_LIBRARY и 
+        - PYTHON3_PACKAGES_PATH       
 	
 	0. `PYTHON2_EXECUTABLE = "C:/Program Files/Python27/python.exe"`
 	
 	0. `CMAKE_CONFIGURATION_TYPES = Release; Debug`
 	    
-	    - нужно собирать обе версии, по умолчанию включено
+	    - **нужно собирать обе версии**, по умолчанию включено
 	
 	0. Дополнительно можно сразу подключить библиотеку Eigen
+	    
+	    - EIGEN_INCLUDE_PATH = C:/Program Files/eigen-3-3-7
+	    - Eigen3_DIR = 
+	0. И TBB:
+	    
+	    - `WITH_TBB = true`
+	    - После нажатия Configure появятся поля
+	    - TBB_DIR 
 	
 6. Снова жмём configure
 7. Если ошибок нет, жмём Generate. Если есть - гуглим и фиксим
@@ -50,7 +77,7 @@
 10. Как итог будет: собрано 149, ошибок 0, пропущено 9
 11. Правый клик по решению - Свойства - Свойства конфигурации - отключаем BUILD_ALL и включаем INSTALL
 12. Снова собираем и, о чудо, появилась папка с именем install в build
-13. Повторяем тоже самое для другой конфигурации.
+13. Повторяем **тоже самое для другой конфигурации.**
 
 ##### Глава 2. Установка
 ***
