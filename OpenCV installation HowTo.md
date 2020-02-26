@@ -32,18 +32,14 @@
         - backslahs заменяем на foreslash
             
 	0. `ENABLE_PRECOMPILED_HEADERS = flase`
-	
 	0. `WITH_PROTOBUF = false`
-	
 	0. `OPENCV_ENABLE_NONFREE = true`
-	
 	0. `WITH_GSTREAMER = false`
-	
 	0. `BUILD_EXAMPLES = true`
-	
 	0. `INSTALL_C_EXAMPLES = true`
-	
 	0. `OPENCV_PYTHON3_VERSION = true`
+	0. `BUILD_TESTS = false`
+	0. `BUILD_PERF_TESTS = false`
 	
         > В системе должен быть установлен python 2 и python 3
         Прописать пути к 
@@ -74,7 +70,7 @@
 там открываем файл OpenCV.sln
 
 9. Нажимаем собрать решение) Ждём минут 30-40.
-10. Как итог будет: собрано 149, ошибок 0, пропущено 9
+10. Как итог будет: собрано 149, ошибок 0, пропущено 9 (в другой раз, собирая с примерами, собрано 464, ошибок 0, пропущено 8)
 11. Правый клик по решению - Свойства - Свойства конфигурации - отключаем BUILD_ALL и включаем INSTALL
 12. Снова собираем и, о чудо, появилась папка с именем install в build
 13. Повторяем **тоже самое для другой конфигурации.**
