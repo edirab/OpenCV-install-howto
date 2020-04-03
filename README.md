@@ -2,46 +2,69 @@
 
 ### Инструкция по сборке OpenCV 4.1.1 под Windows
 
+##### Глава 0. Если ничего не получилось с первого раза
+
+    В CMake: File - Delete Cache
+    И далее Configure
+
 ##### Глава 1. Сборка
 ***
 1. Скачиваем с github.com opencv-4-1-1 и opencv-contrib-4-1-1 (последние стабильные на момент сборки)
 
-        Branch: master -> Tags -> 4.1.1
+    > NB: необходимо переключить ветку:
+    >
+    > Branch: master -> Tags -> 4.1.1
 
 2. Распаковываем в удобные папки. У меня это были 
 
         C:\Program Files\opencv-4-1-1 и 
         C:\Program Files\opencv-contrib-4-1-1
 
-3. Скачиваем последний cmake (3.16.0)
+3. Скачиваем последний cmake (3.16.0 на момент сборки)
 
        Нам понадобится cmake-gui.exe
        Кнопка Configure -> проект под MSVS 2019, конфигурация х64, native compiler
 	
 4. После чего начинается чтение файлов CMake
 
+    > NB: если выдаёт ошибки чтения и не может найти файлы CMakeLists 
+    > 
+    > в поддиректориях, то нужно запускать от администратора    
+    
 5. Меняем следующие параметы:
 
     0. `OPENCV_EXTRA_MODULES_PATH = "C:/Program Files/opencv-contrib-4-1-1/modules"`
         - backslahs заменяем на foreslash
             
 	0. `ENABLE_PRECOMPILED_HEADERS = flase`
-	
 	0. `WITH_PROTOBUF = false`
-	
 	0. `OPENCV_ENABLE_NONFREE = true`
-	
 	0. `WITH_GSTREAMER = false`
 	
 	        В системе должен быть установлен python 2 и python 3
 	
 	0. `PYTHON2_EXECUTABLE = "C:/Program Files/Python27/python.exe"`
-	
 	0. `CMAKE_CONFIGURATION_TYPES = Release; Debug`
-	    
+    0. `BUILD_TESTS = false`
+	0. `BUILD_PERF_TESTS = false`   
 	    - нужно собирать обе версии, по умолчанию включено
-	
+	    
+	0. `BUILD_TESTS = false`
+	0. `BUILD_PERF_TESTS = false`
+	0. `BUILD_opencv_python_tests = false`
 	0. Дополнительно можно сразу подключить библиотеку Eigen
+	    - EIGEN_INCLUDE_PATH = C:/Program Files/eigen-3-3-7
+	   
+	0. И TBB:
+	    
+	    - `WITH_TBB = true`
+	    - После нажатия Configure появятся поля
+	    - TBB_DIR и TBB_VER_FILE. Значения подставятся сами
+	    
+	0. CUDA:
+	
+	0. `ENABLE_FAST_MATH = true`
+	0. `ENABLE_CXX11 = true`
 	
 6. Снова жмём configure
 7. Если ошибок нет, жмём Generate. Если есть - гуглим и фиксим
