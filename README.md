@@ -7,6 +7,10 @@
     В CMake: File - Delete Cache
     И далее Configure
 
+    Если CMake не может найти с первого раза какие-либо пакеты, перезагрузите ПК.
+    Устанавливаемые программы прописывают новые параметры в переменные окружения, которые
+    становятся активны только после очередной перезагрузки
+    
 ##### Глава 1. Сборка
 ***
 1. Скачиваем с github.com opencv-4-1-1 и opencv-contrib-4-1-1 (последние стабильные на момент сборки)
@@ -22,7 +26,9 @@
 
 3. Скачиваем последний cmake (3.16.0 на момент сборки)
 
-       Нам понадобится cmake-gui.exe
+       Нам понадобится cmake-gui.exe. Запускать cmake-gui.exe нужно от Администратора. 
+       Лучше сразу поставить соответствующую галочку в свойствах программы.
+       
        Кнопка Configure -> проект под MSVS 2019, конфигурация х64, native compiler
 	
 4. После чего начинается чтение файлов CMake
@@ -40,31 +46,36 @@
 	0. `WITH_PROTOBUF = false`
 	0. `OPENCV_ENABLE_NONFREE = true`
 	0. `WITH_GSTREAMER = false`
+	0. `ENABLE_CXX11 = true` (для OpenCV версии 3.х.х)
+	0. `ENABLE_FAST_MATH = true`
+	0. `BUILD_TESTS = false`
+	0. `BUILD_PERF_TESTS = false`   
 	
-	        В системе должен быть установлен python 2 и python 3
+        В системе должен быть установлен python 2 и python 3
 	
 	0. `PYTHON2_EXECUTABLE = "C:/Program Files/Python27/python.exe"`
 	0. `CMAKE_CONFIGURATION_TYPES = Release; Debug`
-    0. `BUILD_TESTS = false`
-	0. `BUILD_PERF_TESTS = false`   
+
 	    - нужно собирать обе версии, по умолчанию включено
 	    
 	0. `BUILD_TESTS = false`
 	0. `BUILD_PERF_TESTS = false`
 	0. `BUILD_opencv_python_tests = false`
-	0. Дополнительно можно сразу подключить библиотеку Eigen
+	0. Дополнительно можно сразу подключить библиотеку **Eigen**
 	    - EIGEN_INCLUDE_PATH = C:/Program Files/eigen-3-3-7
 	   
-	0. И TBB:
+	0. И **TBB**:
 	    
-	    - `WITH_TBB = true`
-	    - После нажатия Configure появятся поля
-	    - TBB_DIR и TBB_VER_FILE. Значения подставятся сами
+        - `WITH_TBB = true`
+        - После нажатия Configure появятся поля
+        - TBB_DIR и TBB_VER_FILE. Значения подставятся сами
 	    
-	0. CUDA:
-	
-	0. `ENABLE_FAST_MATH = true`
-	0. `ENABLE_CXX11 = true`
+	0. **CUDA**:
+	NB: После установки обязательна перезагрузка
+
+        - `CUDA_FAST_MATH = true`
+        - `CUDA_TOOLKIT_ROOT_DIR = C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2`
+
 	
 6. Снова жмём configure
 7. Если ошибок нет, жмём Generate. Если есть - гуглим и фиксим
@@ -154,4 +165,7 @@
    
 1. В Windows 10 для доступа приложений к камере необходимо изменить параметры конфиденциальности.
     
-        Все параметры - Конфиденциальность - Доступ к камере - Разрешить приложениям доступ к камере 
+        Все параметры - Конфиденциальность - Доступ к камере - Разрешить приложениям доступ к камере
+        
+2.  Все необходимые для работы собственной программы dll-ки должны лежать там же, где и созданный исполняемый файл.
+Можно не копировать их, а создать символьные ссылки на каждую библиотеку
