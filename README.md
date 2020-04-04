@@ -74,6 +74,8 @@
 	NB: После установки обязательна перезагрузка
 
         - `CUDA_FAST_MATH = true`
+        - `CUDA_SDK_ROOT_DIR = C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/`
+        - `CUDA_TOOLKIT_INCLUDE = C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2/include`
         - `CUDA_TOOLKIT_ROOT_DIR = C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2`
 
 	
