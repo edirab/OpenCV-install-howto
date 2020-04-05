@@ -71,13 +71,28 @@
         - TBB_DIR и TBB_VER_FILE. Значения подставятся сами
 	    
 	0. **CUDA**:
-	NB: После установки обязательна перезагрузка
+	NB: После установки CUDA Toolkit обязательна перезагрузка
 
         - `CUDA_FAST_MATH = true`
+        - `CUDA_ARCH_BIN = 6.1` для видеокарт архитектуры Pascal
+        - `CUDA_HOST_COMPILER = C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.23.28105/bin/Hostx64/x64/cl.exe`
         - `CUDA_SDK_ROOT_DIR = C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/`
         - `CUDA_TOOLKIT_INCLUDE = C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2/include`
         - `CUDA_TOOLKIT_ROOT_DIR = C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2`
-
+        
+        > Исправление ошибки линкера ___cudaRegisterLinkedBinary referenced in function __cudeRegisterAll
+        - `CUDA_SEPARABLE_COMPILATION = false` (сработало)
+        
+        **или**
+        
+        - `CMAKE_LINKER = C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2/bin/nvcc.exe`
+        
+        вместо
+        
+         `C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.23.28105/bin/Hostx64/x64/link.exe`
+         
+        согласно https://stackoverflow.com/questions/13884317/linking-error-unresolved-external-symbol-cudaregisterlinkedbinary-referenced
+        (не проверено)
 	
 6. Снова жмём configure
 7. Если ошибок нет, жмём Generate. Если есть - гуглим и фиксим
