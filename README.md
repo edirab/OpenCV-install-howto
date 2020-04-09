@@ -173,6 +173,20 @@
         opencv_xobjdetect411d.lib
         opencv_xphoto411d.lib
         
+        // Если пересобирали с CUDA, то не забудьте добавить:
+        opencv_cudaarithm349d.lib
+        opencv_cudabgsegm349d.lib
+        opencv_cudacodec349d.lib
+        opencv_cudafeatures2d349d.lib
+        opencv_cudafilters349d.lib
+        opencv_cudaimgproc349d.lib
+        opencv_cudalegacy349d.lib
+        opencv_cudaobjdetect349d.lib
+        opencv_cudaoptflow349d.lib
+        opencv_cudastereo349d.lib
+        opencv_cudawarping349d.lib
+        opencv_cudev349d.lib
+        
 4. Для конфигурации Release делаем тоже самое, только с другими lib'ами
  
         ... Компоновщик - Ввод - Дополнительные зависимости - *.lib
