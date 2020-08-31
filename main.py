@@ -20,7 +20,7 @@ def truncate_filename(directory, mask):
 
 
 dir = "C:/Program Files/opencv-3-4-9/build/install/x64/vc16/"
-mask = ".dll"
+mask = "349.lib"
 # dir = ""
 boost_dir = r'C:\Program Files\boost-1-71\stage\lib'
 boost_mask = ".pdf"
